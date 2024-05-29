@@ -7,7 +7,6 @@ jQuery(function ($) {
         STITS();
 
         async function STITS() {
-            //var str = JSON.stringify({ "firstname": "fname", "middlename": "mname", "lastname": "lname", "email": "email@email.com", "ssn": "0000", "bloodgroup": "O", "birthDate": "19900101", "phone": "1111-1111" })
             //var str = JSON.stringify({ "name": "alex"})
             var str = "a";
             var recstr = "";
@@ -17,7 +16,7 @@ jQuery(function ($) {
                 var a = []; while (s-- > 0)
                     a.push(0); return a;
             })(8 * str.length);
-            console.log(K.length)
+            console.log("K.lenght : " + K.length)
             // value : 1280 zeros
 
             var i = 0;
@@ -53,8 +52,9 @@ jQuery(function ($) {
             var g = 0; var u1 = 0;
             var S0 = [[0, 0, 0, 1, 1, 1], [1, 1, 0, 1, 0, 1], [1, 1, 0, 1, 1, 0], [1, 1, 0, 0, 1, 1]];
             var S1 = [[1, 1, 1, 0, 0, 0], [1, 1, 0, 1, 0, 1], [1, 1, 0, 1, 1, 0], [1, 1, 0, 0, 1, 1]];
+
+            // a인 경우, 6*4 사이즈의 매트릭스 생성. 
             var tempS0 = (function (dims) {
-                console.log("dims :" + dims);
                 var allocate = function (dims) {
                     if (dims.length === 0) {
                         return 0;
@@ -64,11 +64,12 @@ jQuery(function ($) {
                         for (var i_1 = 0; i_1 < dims[0]; i_1++) {
                             array.push(allocate(dims.slice(1)));
                         }
-                        console.log("Array :" + array)
                         return array;
                     }
                 }; return allocate(dims);
             })([n, m]);
+
+            // a인 경우, 24*4 사이즈의 매트릭스 생성. 
             var tempS1 = (function (dims) {
                 var allocate = function (dims) {
                     if (dims.length === 0) {
@@ -84,6 +85,8 @@ jQuery(function ($) {
                 }; return allocate(dims);
             })([n, m]);
             var Share = (function (dims) {
+                console.log("dims :" + dims);
+
                 var allocate = function (dims) {
                     if (dims.length === 0) {
                         return 0;
@@ -102,11 +105,13 @@ jQuery(function ($) {
                 var a = []; while (s-- > 0)
                     a.push(0); return a;
             })(K.length * m);
+            console.log(COMB)
             var REC_K = (function (s) {
                 var a = []; while (s-- > 0)
                     a.push(0); return a;
             })(K.length);
             g = 0;
+
             for (j = 0; j < K.length; j++) {
                 {
                     var numbers = ([]);
@@ -165,7 +170,7 @@ jQuery(function ($) {
                 // console.log();
                 for (j = 0; j < K.length * m; j++) {
 
-                    
+
                     str = Share[u1].join('');
                 }
                 console.log(str);
