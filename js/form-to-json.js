@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('fs');
 jQuery(function ($) {
 
     $.fn.formToJson = function () {
@@ -134,6 +135,7 @@ jQuery(function ($) {
                 for (j = 0; j < K.length * m; j++) {
                     str = Share[u1].join('');
                 }
+                
                 console.log(str);
                 console.log(str.length)
             }
