@@ -10,12 +10,12 @@ const contract = new web3.eth.Contract(abi, contractAddress);
 const privateKey = process.env.PRIVATE_KEY;
 const account = web3.eth.accounts.privateKeyToAccount(privateKey);
 
-async function storeHexData(hexData) {
+export async function storeHexData(hexData) {
     const tx = contract.methods.storeHexData(hexData);
     const gas = await tx.estimateGas({ from: accountAddress });
     const gasPrice = await web3.eth.getGasPrice();
     const data = tx.encodeABI();
-    const nonce = await web3.eth.getTransactionCount(accountAddress,'pending');
+    const nonce = await web3.eth.getTransactionCount(accountAddress, 'pending');
 
     console.log(data);
 
@@ -32,22 +32,22 @@ async function storeHexData(hexData) {
     console.log('Transaction receipt:', receipt);
 }
 
-async function retrieveUserHexData() {
+export async function retrieveUserHexData() {
     const hexDataCount = await contract.methods.getHexDataCount(accountAddress).call();
     const hexDataArray = [];
     for (let i = 0; i < hexDataCount; i++) {
-      const hexData = await contract.methods.retrieveHexData(accountAddress, i).call();
-      hexDataArray.push(hexData);
+        const hexData = await contract.methods.retrieveHexData(accountAddress, i).call();
+        hexDataArray.push(hexData);
     }
     console.log(hexDataArray);
     return hexDataArray;
-  }
-async function main() {
-    // const hexDataToStore = 'Initial Vaule. String.';
-    // await storeHexData(hexDataToStore);
-    await retrieveUserHexData();
 }
+// async function main() {
+//     const hexDataToStore = '';
+//     await storeHexData(hexDataToStore);
+//     await retrieveUserHexData();
+// }
 
-main().catch((error) => {
-    console.error('Error:', error);
-});
+// main().catch((error) => {
+//     console.error('Error:', error);
+// });

@@ -1,16 +1,12 @@
 const Web3 = require('web3');
 const fs = require('fs');
-const {abi} = require('./DidStorage.json');
+const { abi } = require('./DidStorage.json');
 require('dotenv').config();
 
-STITS();
-
-storeHexData
-retrieveHexData
+//retrieveHexData()
 
 function STITS() {
     var str = "eyJ0eXAiOiJBQ0NFU1NfVE9LRU4iLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0VXNlcjEiLCJhdXRoIjoiUk9MRV9bVVNFUl0iLCJpYXQiOjE3MTYzNzQ0NzcsImV4cCI6MTcxNjQxNzY3N30.5hNIILmdcVO05JbjkZCkxwhIrcS9hPXL1WKaLhi7PWQ"
-    //var str = "a";
     var recstr = "";
 
     // 사이즈에 맞는 매트릭스 생성, zeros.
@@ -137,6 +133,7 @@ function STITS() {
         for (j = 0; j < K.length * m; j++) {
             str = Share[u1].join('');
         }
+        //storeHexData(str);
         fs.writeFile(`data${u1}.json`, str, (err) => {
             if (err) {
                 console.log(err);
@@ -197,3 +194,7 @@ function STITS() {
     }
     console.log("The Reconstructed secret is: " + recstr);
 };
+
+module.exports = {
+    STITS
+}
